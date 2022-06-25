@@ -1,0 +1,27 @@
+﻿<h1>{{nameOfProject}}</h1>
+<p class="pname">Powered by: {{myFirstName}} {{myLastName}}</p>
+
+<table id="cars">
+    <tr>
+      <th>CarID</th>
+      <th>CompanyName</th>
+      <th>ManufacturedYear</th>
+      <th>PassedTestInLastYear</th>
+    </tr>
+    <!-- //go over array of cars and print info -->
+    <tr *ngFor="let C of ArrCars" >
+      <td>{{C.CarID}}</td>
+      <td>
+        <input type="button" value="company" class="btnChangeColor" (click)="nameCompanyFunc(C.CarID)"/>
+      </td>
+      <td>{{C.ManufacturedYear}}</td>
+      <td>
+        <label class="switch">
+            <input type="checkbox" [checked]="C.PassedTestInLastYear" (click)="changeStatus(C.CarID)">
+        </label>
+        <p *ngIf="C.PassedTestInLastYear==false">It is not possible to drive this car - no test!!</p>
+    </td>
+    </tr>
+
+  </table>
+

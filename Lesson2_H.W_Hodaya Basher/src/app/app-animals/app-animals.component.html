@@ -1,0 +1,56 @@
+
+  <input type="button" value="add animal" class="addBtn" (click)="open(content)" />
+
+<div class="main">
+    <h1 class="animaltitel">Animals</h1>
+    <ul class="cards">
+      <li class="cards_item" *ngFor="let j of allAnimals ; let i = index">
+        <div class="card">
+          <div class="card_image"><img src={{j.img}}></div>
+          <div class="card_content">
+            <h2 class="card_title">{{j.name}}</h2>
+            <p class="card_text">This {{j.name}} is {{j.age}} years old</p>
+            <div class="btn-inline">
+            <button class="btn card_btn" (click)="allAnimals.splice(i, 1)">Delete</button>
+            <button class="btn card_btn" (click)="update(j)" (click)="open(content)" (click)="resetForm()">Update</button>
+          </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New Animal</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (submit)="OKForm()" >
+        <div class="form-group">
+          <label for="firstname">Name</label>
+          <div class="input-group">
+            <input id="name" class="form-control" name="Name" [(ngModel)]="newAnimal.name"/>
+          </div>
+
+          <label for="id">Id</label>
+          <div class="input-group">
+            <input id="id" class="form-control" name="id" [(ngModel)]="newAnimal.id"/>
+          </div>
+
+          <label for="age">age</label>
+          <div class="input-group">
+            <input id="age" class="form-control" name="age" [(ngModel)]="newAnimal.age"/>
+          </div>
+        </div>
+        <div class="modal-footer" >
+          <!-- <input type="submit" value="add animal" (click)="modal.close('Save click')"/> -->
+          <!-- <input type="reset" value="reset form" (click)="resetForm()"/> -->
+          <button type="submit" (click)="modal.close('Save click')">add animal</button>
+          <button type="reset" >reset form</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
